@@ -1,6 +1,3 @@
-import java.util.ArrayDeque;
-import java.util.Queue;
-
 public class queue_linkedlist_implementation {
     public static class Node {
         int data;
@@ -25,6 +22,7 @@ public class queue_linkedlist_implementation {
                 tail.next = temp;
                 tail = temp;
             }
+            tail.next = head;
             size++;
         }
 
@@ -35,14 +33,16 @@ public class queue_linkedlist_implementation {
             } else {
                 int x = head.data;
                 head = head.next;
+                tail.next = head;
                 size--;
                 return x;
             }
         }
 
         void display() {
-            Node temp = head;
-            while (temp != null) {
+            System.out.print(head.data + " ");
+            Node temp = head.next;
+            while (temp != head) {
                 System.out.print(temp.data + " ");
                 temp = temp.next;
             }
@@ -64,7 +64,6 @@ public class queue_linkedlist_implementation {
     }
 
     public static void main(String[] args) {
-        Queue<Integer> q = new ArrayDeque<>();
         queuell obj = new queuell();
         obj.add(5);
         obj.display();
@@ -76,6 +75,9 @@ public class queue_linkedlist_implementation {
         obj.display();
 
         obj.remove();
+        obj.display();
+
+        obj.add(-987);
         obj.display();
 
         System.out.println(obj.size());
